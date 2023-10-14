@@ -19,8 +19,11 @@ public class CameraFollow : MonoBehaviour
             // 平滑过渡到目标位置
             transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
 
-            // 让摄像机一直看着玩家
-            transform.LookAt(playerTransform);
+            // 计算目标旋转
+            Quaternion targetRotation = Quaternion.LookRotation(playerTransform.position - transform.position, Vector3.up);
+
+            // 平滑过渡到目标旋转
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smoothSpeed * Time.deltaTime);
         }
     }
 }
