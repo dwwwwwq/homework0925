@@ -1,42 +1,23 @@
  namespace Scene1 {
     
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SceneSwitcher : MonoBehaviour
 {
-    public string destinationScene = "scene2"; // 目标场景名称
-    public float delayBeforeSwitch = 1.0f; // 切换场景前的延迟时间
+    public string nextSceneName = "scene2"; // 指定要切换到的下一个场景
 
-    private bool isSwitching = false;
-
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter called with object: " + other.name);
-        if (other.CompareTag("Player") && !isSwitching)
+        if (other.CompareTag("Player"))
         {
-            isSwitching = true;
-
-            // 播放通关音效
-            // AudioManager.instance.PlaySound(passLevelSoundName);
-
-            StartCoroutine(LoadScene(destinationScene));
+            // 当玩家进入触发区域时，触发场景切换事件
+            EventManager.Instance.TriggerSceneSwitchEvent(nextSceneName);
+            // EventManager.Instance.TriggerSceneSwitchAudioPlayEvent();
+            
+            // Debug.Log("scene2");
+        
         }
     }
-
-    private IEnumerator LoadScene(string sceneName)
-{
-    Debug.Log("LoadScene called with scene name: " + sceneName);
-
-    // 等待一定时间
-    yield return new WaitForSeconds(delayBeforeSwitch);
-    Debug.Log("Delay time is over, switching scene.");
-
-    // 加载目标场景
-    SceneManager.LoadScene(sceneName);
-}
 }
 }
