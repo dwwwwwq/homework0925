@@ -1,28 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+
 
 public class characterManager : Singleton<characterManager>
 {
-    public RectTransform uiElement;  // UI元素的RectTransform
-    public Transform selectedCharacter;  // 所选角色的Transform
+    public event Action<CharacterState> CharacterStateChanged;
+    private CharacterState currentState;
+    private Rigidbody rb;
+    public CharacterState CurrentState
+    {
+        get { return currentState; }
+    }
 
-    private float characterHeight = 1.3f;  // 角色头部的高度偏移
+    public enum CharacterState
+    {
+        IsMoving,
+        Standby
+    }
+
+    void Start()
+    {
+        // 初始化状态
+        currentState = CharacterState.Standby;
+    }
 
     void Update()
     {
-        if (selectedCharacter != null && uiElement != null)
+        // 根据角色行为更新状态
+        if (HasInput())
         {
-            // 获取所选角色头部的世界坐标
-            Vector3 characterHeadPosition = selectedCharacter.position + Vector3.up * characterHeight;
-
-            // 将世界坐标转换为屏幕坐标
-            Vector2 screenPosition = Camera.main.WorldToScreenPoint(characterHeadPosition);
-
-            // 更新UI元素的位置
-            uiElement.anchoredPosition = screenPosition;
+            ChangeState(CharacterState.IsMoving);
+            // Debug.Log("IsMoving");
+        }
+        else
+        {
+            ChangeState(CharacterState.Standby);
         }
     }
+
+    void ChangeState(CharacterState newState)
+    {
+        if (currentState != newState)
+        {
+            currentState = newState;
+            CharacterStateChanged?.Invoke(newState);
+            // EventManager.Instance.TriggerCharacterStateChangedEvent()
+            // Debug.Log("CharacterStateChanged"+currentState);
+        }
+    }
+
+    bool HasInput()
+    {
+        // 检测是否有输入
+        return Input.GetButton("Horizontal") || Input.GetButton("Vertical");
+        // Debug.Log("HasInput");
+    }
+    
 }
 
 
