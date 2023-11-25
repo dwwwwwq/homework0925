@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: sphere
   itemHeld: 1
+  itemPrefab: {fileID: 6605276363842905650, guid: ebef455c07fb9453d900d7b6fedc543e, type: 3}

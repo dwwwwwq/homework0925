@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: cube
   m_EditorClassIdentifier: 
   itemName: cube
-  itemHeld: 3
+  itemHeld: 1
+  itemPrefab: {fileID: 5560172031646357690, guid: baa4651bea671465a864b1498041d701, type: 3}

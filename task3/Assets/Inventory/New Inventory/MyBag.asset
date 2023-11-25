@@ -12,6 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d1131fca87f40a2979e4bdf4b13864, type: 3}
   m_Name: MyBag
   m_EditorClassIdentifier: 
-  itemList:
-  - {fileID: 11400000, guid: 31019bd5de2e640438e46ad17a7248bc, type: 2}
-  - {fileID: 11400000, guid: 4de8233fd102543c5b570ba3bd4e0176, type: 2}
+  itemList: []

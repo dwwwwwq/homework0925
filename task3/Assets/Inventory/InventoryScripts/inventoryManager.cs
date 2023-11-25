@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class inventoryManager : MonoBehaviour
 {
-    static inventoryManager instance;
+    public static inventoryManager instance;
 
     public Inventory myBag;
     public GameObject slotGrid;
