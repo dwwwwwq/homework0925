@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: cube
   m_EditorClassIdentifier: 
   itemName: cube
-  itemHeld: 1
+  itemHeld: 3
