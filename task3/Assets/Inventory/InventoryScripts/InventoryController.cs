@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryController : MonoBehaviour
+public class InventoryController : Singleton<InventoryController>
 {
     public GameObject inventoryCanvas;
     public Transform playerTransform;

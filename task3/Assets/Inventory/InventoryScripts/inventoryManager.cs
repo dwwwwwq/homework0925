@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class inventoryManager : MonoBehaviour
+public class inventoryManager : Singleton<inventoryManager>
 {
     public static inventoryManager instance;
 
@@ -10,12 +10,12 @@ public class inventoryManager : MonoBehaviour
     public GameObject slotGrid;
     public slot slotPrefab;
 
-    void Awake()
-    {
-        if(instance!=null)
-            Destroy(this);
-        instance=this;
-    }
+    // void Awake()
+    // {
+    //     if(instance!=null)
+    //         Destroy(this);
+    //     instance=this;
+    // }
 
     private void OnEnable()
     {
